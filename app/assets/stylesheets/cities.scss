@@ -1,0 +1,33 @@
+// Place all the styles related to the cities controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.resize {
+  width: 50%;
+  height: auto;
+}
+
+.city-detail {
+  text-align: center;
+  position: relative;
+}
+
+.city-description {
+  display: none;
+  bottom: 25%;
+  width: 100%;
+  height: 5em;;
+  position: absolute;
+  z-index: 999;
+  margin: 0 auto;
+}
+
+.city-description p{
+  color:white;
+  margin: 0 10%;
+  font-size: 2.7vmin;
+}
+
+.city-container {
+  margin-top: 4em;
+}

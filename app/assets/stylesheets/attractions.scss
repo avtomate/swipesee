@@ -1,0 +1,101 @@
+// Place all the styles related to the attractions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.ui-loading .ui-loader {
+  display: block;
+}
+
+.ui-loader {
+  display: none;
+  position: absolute;
+  opacity: .85; z-index: 100;
+  left: 50%; width: 200px;
+  margin-left: -130px;
+  margin-top: -35px;
+  padding: 10px 30px;
+}
+
+.hidden {
+  display: none;
+  width: 50%;
+}
+
+.hidden_button {
+/*width: 50%;*/
+}
+
+.show_button {
+  display: block;
+  /*width: 50%;*/
+}
+
+.panel {
+    margin: 0 auto;
+    width: 310px;
+    height: 390px;
+    position: relative;
+    font-size: .8em;
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
+}
+.panel .front {
+    background-image: url(/imgs/polaroid_repeat.png);
+    position: absolute;
+    top: 0;
+    z-index: 900;
+    width: inherit;
+    height: inherit;
+    text-align: center;
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -moz-transform: rotateX(0deg) rotateY(0deg);
+    -moz-transform-style: preserve-3d;
+    -moz-backface-visibility: hidden;
+    /* -- transition is the magic sauce for animation -- */
+    -o-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+.panel.flip .front {
+    z-index: 900;
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+}
+.panel .back {
+    background-color: #ECEFF4;
+    position: absolute;
+    top: 0;
+    z-index: 800;
+    width: inherit;
+    height: inherit;
+    -webkit-transform: rotateY(-180deg);
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+
+    -moz-transform: rotateY(-180deg);
+    -moz-transform-style: preserve-3d;
+    -moz-backface-visibility: hidden;
+    /* -- transition is the magic sauce for animation -- */
+    -o-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+.panel.flip .back {
+    z-index: 1000;
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -moz-transform: rotateX(0deg) rotateY(0deg);
+}
+
+.address {
+    display: none;
+}
+
+#icon2 {
+    width: 5px;
+}

@@ -1,0 +1,64 @@
+<div class="total-page-container">
+  <header class="debug">
+    <div class="debug clearfix">
+      <div class="debug fl-l p-l-sm">
+        <% if current_user %>
+          <a href='/logout'><%= image_tag('logout.png', :class => "log")%></a>
+          <% else %>
+          <a href='/login'><%= image_tag('login.png', :class => "log")%></a>
+        <% end %>
+      </div>
+      <div class="debug fl-r p-r-sm">
+        <% if current_user %>
+          <a href='/mycities'><%= image_tag('heart.png', :class => "log")%></a>
+          <% else %>
+          <a href='/users/new' class="t-left w-60 h-68"><%= image_tag('plus.png', :class => "log")%></a>
+        <% end %>
+      </div>
+      <div class="debug center w-logo">
+        <a href="/cities"><%= image_tag('swipesee_circle.png', :class => "logo")%></a>
+      </div>
+    </div>
+    <div class="t-center m-t-neg">
+      <a href="/cities"><h1 class="d-inb f-oswald fz-ms c-white">SwipeSee</h1></a>
+    </div>
+
+    <h1 class="f-oldstd t-center">MY <%= @city.name.upcase %></h1>
+    <div class="debug col span-12-t t-center p-sm">
+      <form id="search-form" class="debug">
+        <input type="text" class="search-input debug bdr-blk t-center p-sm bdr-r-m w-90 fz-sm">
+      </form>
+    </div>
+  </header>
+  <div class="se-pre-con"></div>
+
+  <%= form_tag("/mycities/#{@city.id}/selected_map", method: "get") do %>
+
+  <div class='attra-wrapper'>
+    <div class="t-center">
+      <%= submit_tag("MAP MY SELECTED ATTRACTIONS", class: "f-oswald m-b-m center sm-rect-button-map") %>
+    </div>
+  <% @attractions.each do |attraction| %>
+    <div class="my-attractions t-center p-sm">
+      <div class="c-white t-center f-oldstd">
+        <%= attraction.name %>
+      </div>
+      <div class="bdr-m-blk f-oldstd square_city">
+        <a href="/mycities/<%= attraction.city_id %>/attractions/<%= attraction.id %>"><img src="<%= attraction.photo_url %>" id="<%=attraction.name %>" class="my-city-image"></a>
+      </div>
+      <div class="m-t-m">
+        <div class="d-in p-r-m">
+          <%=check_box_tag("attractions[]", "#{attraction.name}, #{attraction.lat}, #{attraction.long}" )  %>
+          <p class="f-oswald d-in">ADD ME TO MAP</p>
+        </div>
+
+        <button class='fz-xxs f-oswald unlike sm-rect-button-np' href='/users/<%= @user.id%>/cities/<%=@city.id%>/attractions/<%=attraction.id%>'>UNLIKE</button>
+      </div>
+    </div>
+    <% end %>
+    <div class="t-center">
+      <%= submit_tag("MAP MY SELECTED ATTRACTIONS", class: "f-oswald m-b-m center sm-rect-button-map") %>
+    </div>
+  </div>
+<% end %>
+</div>

@@ -1,0 +1,69 @@
+<div class="total-page-container">
+  <header class="debug">
+    <div class="debug clearfix">
+      <div class="debug fl-l p-l-sm">
+        <% if current_user %>
+          <a id="sign_out" href='/logout'><%= image_tag('logout.png', :class => "log")%></a>
+          <% else %>
+          <a href='/login'><%= image_tag('login.png', :class => "log")%></a>
+        <% end %>
+      </div>
+      <div class="debug fl-r p-r-sm">
+        <% if current_user %>
+          <a href='/mycities'><%= image_tag('heart.png', :class => "log")%></a>
+          <% else %>
+          <a href='/users/new' class="t-left w-60 h-68"><%= image_tag('plus.png', :class => "log")%></a>
+        <% end %>
+      </div>
+      <div class="debug center w-logo">
+        <a href="/cities"><%= image_tag('swipesee_circle.png', :class => "logo")%></a>
+      </div>
+    </div>
+    <div class="t-center m-t-neg">
+      <a href="/cities"><h1 class="d-inb f-oswald fz-ms c-white">SwipeSee</h1></a>
+    </div>
+  </header>
+  <div class="se-pre-con"></div>
+  <!-- Original Page content for Jquery -->
+  <div class="attractions-container">
+    <% @attractions.each_with_index do |attraction,index| %>
+      <div class="attraction panel hidden">
+        <div id="attraction<%= index %>" class="debug front panel m-t-l">
+          <% if attraction.name.length < 25 %>
+            <p class="f-oldstd fz-ms p-xs"><%= attraction.name %></p>
+          <% elsif attraction.name.length < 40 %>
+            <p class="f-oldstd fz-sm p-xs"><%= attraction.name %></p>
+          <% else %>
+            <p class="f-oldstd fz-xs p-xs"><%= attraction.name %></p>
+          <% end %>
+          <div class="square_city">
+            <a href="/cities/<%= @city.id %>/attractions/<%= attraction.id %>"><img class="debug my-city-image" src="<%= attraction.photo_url %>"></a>
+          </div>
+          <div class="m-t-l center button_test hidden_button">
+            <button href="/cities/<%= @city.id %>/attractions/<%= attraction.id%>/dislike" type='button' class="button-left round-button" id='leftb'><%= image_tag('thumbs_down.png', :class => "log")%></button>
+            <button type='button' class='button-info round-button v-top' id='midb'>INFO</button>
+            <button href="/cities/<%= @city.id %>/attractions/<%= attraction.id%>/like" type='button' class="round-button button-right" id='rightb'><%= image_tag('thumbs_up.png', :class => "log")%></button>
+          </div>
+        </div>
+        <div class="m-t-l panel back">
+          <% if attraction.description.length < 280 %>
+          <h1 class="f-oldstd p-m"><%= attraction.description %></h1>
+          <% else %>
+          <h1 class="f-oldstd p-m fz-sm"><%= attraction.description %></h1>
+          <% end %>
+        </div>
+      </div>
+      <!-- <div class="button_test hidden_button">
+        <button href="/cities/<%= @city.id %>/attractions/<%= attraction.id%>/dislike" type='button' class="button-left" id='leftb'>Left</button>
+        <button type='button' class='button-info' id='midb'>Info</button>
+        <button href="/cities/<%= @city.id %>/attractions/<%= attraction.id%>/like" type='button' class="button-right" id='rightb'>Right</button>
+      </div> -->
+    <% end %>
+      <div class="swipsee-end panel hidden">
+        <a href="/mycities/<%= @city.id %>/attractions"><p class="p-sm fz-m t-center"><%= @quote %></p>
+        <p class="fz-ms p-sm t-center">Click to check out your city selections</p></a>
+        <%= image_tag('swipesee.png', :class => "swipesee-final") %>
+      </div>
+  </div>
+  <!-- End Original Page content for Jquery -->
+</div>
